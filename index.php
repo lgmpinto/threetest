@@ -7,35 +7,27 @@
 		<link rel="stylesheet" href="dist/dropzone.css">
 		<link rel="stylesheet" href="dist/basic.css">
 		<link rel="stylesheet" href="dist/style.css">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,300italic|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 		<style>
 
 			body {
-				font-family: Monospace;
 				background-color: #e5e5e5;
 				margin: 0px;
 				overflow: hidden;
 			}
 
-			a { color: skyblue }
-			.button { background:#999; color:#eee; padding:0.2em 0.5em; cursor:pointer }
-			.highlight { background:orange; color:#fff; }
-			span {
-				display: inline-block;
-				width: 60px;
-				float: left;
-				text-align: center;
-			}
-
 		</style>
-	</head>
-	<body>
 		<script src="dist/three/build/three.js"></script>
 		<script src="dist/three/examples/js/loaders/STLLoader.js"></script>
 		<script src="dist/three/examples/js/Detector.js"></script>
 		<script src="dist/three/examples/js/controls/OrbitControls.js"></script>
 		<script src="dist/three/examples/js/libs/jszip.min.js"></script>
 		<script src="dist/dropzone.js"></script>
+		<script src="dist/app.js"></script>
 		<script src="dist/jquery-3.3.1.js"></script>
+		<script src="dist/fastclick.js"></script>
+	</head>
+	<body>
 		<script>
 
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
@@ -51,7 +43,7 @@
 			    init:function(){
 						this.on( "addedfile", function( file ){
 							removeEntity( mesh );
-							loadSTL('model/'+file.name);
+							loadSTL('model/stl/'+file.name);
 							this.emit( "thumbnail", file, 'model/thumbnail/stl.png' );
 						}	)
 			    }
@@ -144,7 +136,7 @@
 		</script>
 		<section>
   			<div id="dropzone">
-				<form action="/" method="post" class="dropzone" id="my-awesome-dropzone">
+				<form action="/" method="post" class="dropzone needsclick" id="my-awesome-dropzone">
 					<div class="dz-message needsclick">
     					Drop files here or click to upload.
 					</div>
